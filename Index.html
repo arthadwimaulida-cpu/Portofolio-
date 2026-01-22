@@ -1,0 +1,1351 @@
+<!doctype html>
+<html lang="id">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Platform premium untuk menemukan novel romansa Islami terbaik yang telah diadaptasi menjadi film dan series. Temukan kisah cinta yang menginspirkan dengan nilai-nilai Islam.">
+  <meta name="keywords" content="novel islami, romansa islami, film islami, series islami, novel romantis islam, adaptasi film islami">
+  <meta name="author" content="Islamic Romance Library">
+  <title>Islamic Romance Library - Novel Romansa Islami Premium</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&amp;family=Montserrat:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-bg: #FAFAFA;
+            --secondary-bg: #FFFFFF;
+            --primary-text: #1A1A1A;
+            --secondary-text: #666666;
+            --accent-gold: #D4AF37;
+            --accent-emerald: #2D5F5D;
+            --accent-rose: #C9A0A0;
+            --border-color: #E5E5E5;
+            --shadow-light: rgba(0, 0, 0, 0.05);
+            --shadow-medium: rgba(0, 0, 0, 0.1);
+        }
+        
+        .dark-mode {
+            --primary-bg: #0F0F0F;
+            --secondary-bg: #1A1A1A;
+            --primary-text: #F5F5F5;
+            --secondary-text: #B0B0B0;
+            --accent-gold: #F4D03F;
+            --accent-emerald: #45B7AA;
+            --accent-rose: #E8B4B4;
+            --border-color: #2A2A2A;
+            --shadow-light: rgba(255, 255, 255, 0.05);
+            --shadow-medium: rgba(255, 255, 255, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--primary-text);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Navbar Premium */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--secondary-bg);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            box-shadow: 0 4px 20px var(--shadow-light);
+        }
+        
+        .nav-link {
+            position: relative;
+            color: var(--primary-text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gold);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section Premium */
+        .hero-section {
+            min-height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 120px 20px 80px;
+            background: linear-gradient(135deg, var(--secondary-bg) 0%, var(--primary-bg) 100%);
+        }
+        
+        .hero-ornament {
+            position: absolute;
+            opacity: 0.03;
+            pointer-events: none;
+        }
+        
+        .hero-ornament-1 {
+            top: 10%;
+            right: 10%;
+            font-size: 200px;
+            transform: rotate(15deg);
+        }
+        
+        .hero-ornament-2 {
+            bottom: 10%;
+            left: 5%;
+            font-size: 150px;
+            transform: rotate(-20deg);
+        }
+        
+        /* Novel Card Premium */
+        .novel-card {
+            background: var(--secondary-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .novel-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 60px var(--shadow-medium);
+            border-color: var(--accent-gold);
+        }
+        
+        .novel-card-image {
+            position: relative;
+            height: 320px;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--accent-emerald), var(--accent-rose));
+        }
+        
+        .novel-card-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.3) 100%);
+            z-index: 1;
+        }
+        
+        .novel-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 80px;
+            color: rgba(255, 255, 255, 0.9);
+            z-index: 2;
+            transition: all 0.4s ease;
+        }
+        
+        .novel-card:hover .novel-icon {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        
+        .novel-rating {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--accent-gold);
+        }
+        
+        .novel-badge {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 3;
+            color: var(--primary-text);
+        }
+        
+        /* Button Premium */
+        .btn-premium {
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .btn-gold {
+            background: var(--accent-gold);
+            color: #1A1A1A;
+        }
+        
+        .btn-gold:hover {
+            background: #C19B2E;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent-gold);
+            color: var(--accent-gold);
+        }
+        
+        .btn-outline:hover {
+            background: var(--accent-gold);
+            color: #1A1A1A;
+        }
+        
+        /* Search Bar Premium */
+        .search-container {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 18px 60px 18px 24px;
+            border-radius: 50px;
+            border: 2px solid var(--border-color);
+            background: var(--secondary-bg);
+            color: var(--primary-text);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+        }
+        
+        .search-btn {
+            position: absolute;
+            right: 6px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--accent-gold);
+            border: none;
+            color: #1A1A1A;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .search-btn:hover {
+            background: #C19B2E;
+            transform: translateY(-50%) scale(1.05);
+        }
+        
+        /* Sidebar Premium */
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+        
+        .sidebar-card {
+            background: var(--secondary-bg);
+            border-radius: 16px;
+            padding: 28px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 24px;
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar-card:hover {
+            box-shadow: 0 8px 30px var(--shadow-light);
+        }
+        
+        /* Value Card Premium */
+        .value-card {
+            background: var(--secondary-bg);
+            border-radius: 16px;
+            padding: 40px;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-gold);
+            transform: scaleY(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .value-card:hover::before {
+            transform: scaleY(1);
+        }
+        
+        .value-card:hover {
+            transform: translateX(8px);
+            box-shadow: 0 12px 40px var(--shadow-medium);
+        }
+        
+        /* Author Card Premium */
+        .author-card {
+            background: var(--secondary-bg);
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+        
+        .author-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 50px var(--shadow-medium);
+        }
+        
+        .author-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--accent-emerald), var(--accent-gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+            font-weight: 700;
+            border: 4px solid var(--border-color);
+        }
+        
+        /* Chatbot Premium */
+        .chatbot-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+        }
+        
+        .chatbot-button {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-emerald), var(--accent-gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .chatbot-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 40px rgba(212, 175, 55, 0.6);
+        }
+        
+        .chatbot-window {
+            display: none;
+            position: fixed;
+            bottom: 110px;
+            right: 30px;
+            width: 380px;
+            height: 550px;
+            background: var(--secondary-bg);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px var(--shadow-medium);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            flex-direction: column;
+        }
+        
+        .chatbot-window.active {
+            display: flex;
+        }
+        
+        /* Counter Premium */
+        .counter-box {
+            text-align: center;
+            padding: 32px;
+            background: var(--secondary-bg);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        
+        .counter-box:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px var(--shadow-light);
+        }
+        
+        .counter-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            font-family: 'Cormorant Garamond', serif;
+            background: linear-gradient(135deg, var(--accent-emerald), var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in-up {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .fade-in-up.visible {
+            opacity: 1;
+        }
+        
+        /* Parallax */
+        .parallax-section {
+            position: relative;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        /* Modal Video Premium */
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .video-modal.active {
+            display: flex;
+        }
+        
+        .video-container {
+            position: relative;
+            width: 90%;
+            max-width: 1000px;
+            aspect-ratio: 16/9;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
+        }
+        
+        .close-video {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: var(--accent-gold);
+            color: #1A1A1A;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .close-video:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Theme Toggle Premium */
+        .theme-toggle {
+            width: 56px;
+            height: 28px;
+            background: var(--border-color);
+            border-radius: 50px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-toggle::before {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 22px;
+            height: 22px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-toggle.active::before {
+            left: 31px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 100px 20px 60px;
+            }
+            
+            .novel-card-image {
+                height: 240px;
+            }
+            
+            .chatbot-window {
+                width: calc(100% - 40px);
+                right: 20px;
+            }
+            
+            .sidebar {
+                position: relative;
+                top: 0;
+            }
+            
+            .counter-number {
+                font-size: 2.5rem;
+            }
+        }
+        
+        /* Loading Animation */
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-emerald), var(--accent-gold));
+            z-index: 1001;
+            transition: width 0.1s ease;
+        }
+        
+        /* Tag Premium */
+        .tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: 1px solid var(--border-color);
+            background: var(--primary-bg);
+            color: var(--secondary-text);
+            transition: all 0.3s ease;
+        }
+        
+        .tag:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body><!-- Scroll Progress Bar -->
+  <div class="scroll-progress" id="scrollProgress"></div><!-- Navbar Premium -->
+  <nav class="navbar">
+   <div class="max-w-7xl mx-auto px-6 py-4">
+    <div class="flex items-center justify-between"><!-- Logo -->
+     <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-600 to-amber-500 flex items-center justify-center"><i class="fas fa-book-open text-white text-lg"></i>
+      </div>
+      <div>
+       <h1 id="site-title" class="text-xl font-bold" style="font-family: 'Cormorant Garamond', serif;">Islamic Romance Library</h1>
+       <p id="tagline" class="text-xs" style="color: var(--secondary-text);">Discover Love Through Faith</p>
+      </div>
+     </div><!-- Desktop Navigation -->
+     <div class="hidden lg:flex items-center gap-8"><a href="#home" class="nav-link">Home</a> <a href="#novels" class="nav-link">Novels</a> <a href="#values" class="nav-link">Values</a> <a href="#authors" class="nav-link">Authors</a>
+     </div><!-- Right Actions -->
+     <div class="hidden lg:flex items-center gap-4"><!-- Language Switcher --> <select id="languageSwitcher" class="px-4 py-2 rounded-full border border-gray-300 bg-transparent text-sm font-medium cursor-pointer" style="border-color: var(--border-color); color: var(--primary-text);"> <option value="id">🇮🇩 ID</option> <option value="en">🇬🇧 EN</option> <option value="ar">🇸🇦 AR</option> </select> <!-- Theme Toggle -->
+      <div class="theme-toggle" id="themeToggle"></div>
+     </div><!-- Mobile Menu Button --> <button class="lg:hidden text-2xl" id="mobileMenuBtn" style="color: var(--primary-text);"> <i class="fas fa-bars"></i> </button>
+    </div><!-- Mobile Menu -->
+    <div class="hidden lg:hidden mt-6 pb-4" id="mobileMenu">
+     <div class="flex flex-col gap-4"><a href="#home" class="nav-link">Home</a> <a href="#novels" class="nav-link">Novels</a> <a href="#values" class="nav-link">Values</a> <a href="#authors" class="nav-link">Authors</a>
+      <div class="flex items-center gap-4 pt-4 border-t" style="border-color: var(--border-color);"><select id="languageSwitcherMobile" class="flex-1 px-4 py-2 rounded-full border bg-transparent text-sm font-medium" style="border-color: var(--border-color); color: var(--primary-text);"> <option value="id">🇮🇩 Indonesia</option> <option value="en">🇬🇧 English</option> <option value="ar">🇸🇦 العربية</option> </select>
+       <div class="theme-toggle" id="themeToggleMobile"></div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </nav><!-- Hero Section -->
+  <section id="home" class="hero-section">
+   <div class="hero-ornament hero-ornament-1"><i class="fas fa-mosque"></i>
+   </div>
+   <div class="hero-ornament hero-ornament-2"><i class="fas fa-book-heart"></i>
+   </div>
+   <div class="max-w-6xl mx-auto text-center relative z-10 fade-in-up">
+    <div class="inline-block mb-6 px-6 py-2 rounded-full border" style="border-color: var(--accent-gold); color: var(--accent-gold);"><span class="text-sm font-semibold">✨ Premium Collection</span>
+    </div>
+    <h2 id="hero-title" class="text-5xl md:text-7xl font-bold mb-6" style="font-family: 'Cormorant Garamond', serif; line-height: 1.2;">Kisah Cinta yang<br>
+     Menginspirasi</h2>
+    <p id="hero-description" class="text-lg md:text-xl mb-12 max-w-2xl mx-auto" style="color: var(--secondary-text);">Jelajahi koleksi novel romansa Islami terbaik yang telah diadaptasi menjadi film dan series berkualitas tinggi</p><!-- Search Bar -->
+    <div class="search-container mb-16"><input type="text" id="searchInput" class="search-input" placeholder="Cari novel, penulis, atau film..." aria-label="Search novels"> <button class="search-btn" id="searchBtn" aria-label="Search"> <i class="fas fa-search"></i> </button>
+    </div><!-- Statistics Counter -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+     <div class="counter-box">
+      <div class="counter-number" data-target="50">
+       0
+      </div>
+      <p class="text-sm font-semibold mt-2" style="color: var(--secondary-text);">Novel Premium</p>
+     </div>
+     <div class="counter-box">
+      <div class="counter-number" data-target="35">
+       0
+      </div>
+      <p class="text-sm font-semibold mt-2" style="color: var(--secondary-text);">Film Adaptasi</p>
+     </div>
+     <div class="counter-box">
+      <div class="counter-number" data-target="15">
+       0
+      </div>
+      <p class="text-sm font-semibold mt-2" style="color: var(--secondary-text);">Series TV</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-6 py-20">
+   <div class="flex flex-col lg:flex-row gap-12"><!-- Main Content Area -->
+    <div class="flex-1"><!-- Novels Section -->
+     <section id="novels" class="mb-24 fade-in-up">
+      <div class="text-center mb-16">
+       <h2 class="text-4xl md:text-5xl font-bold mb-4" style="font-family: 'Cormorant Garamond', serif;">Novel Islami Terpopuler</h2>
+       <p class="text-lg max-w-2xl mx-auto" style="color: var(--secondary-text);">Koleksi pilihan novel romansa Islami yang telah diadaptasi menjadi karya sinematik</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="novelsGrid"><!-- Novel Card 1: Ayat-Ayat Cinta -->
+       <div class="novel-card" data-video="https://www.youtube.com/watch?v=kVrHQxB5pKU">
+        <div class="novel-card-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"><i class="novel-icon fas fa-heart"></i>
+         <div class="novel-rating"><i class="fas fa-star"></i> <span>4.8</span>
+         </div>
+         <div class="novel-badge">
+          Film
+         </div>
+        </div>
+        <div class="p-6 flex-1 flex flex-col">
+         <h3 class="text-2xl font-bold mb-2" style="font-family: 'Cormorant Garamond', serif;">Ayat-Ayat Cinta</h3>
+         <p class="text-sm mb-3" style="color: var(--secondary-text);">Habiburrahman El Shirazy</p>
+         <p class="text-sm mb-4 flex-1" style="color: var(--secondary-text);">Kisah cinta seorang mahasiswa Indonesia di Mesir yang penuh dengan nilai-nilai Islam dan perjuangan hidup yang menginspirasi.</p>
+         <div class="flex gap-2 mb-4 flex-wrap"><span class="tag">Romansa</span> <span class="tag">Spiritual</span> <span class="tag">Drama</span>
+         </div>
+         <div class="flex gap-3"><button class="btn-premium btn-gold flex-1 watch-trailer"> <i class="fas fa-play"></i> <span>Trailer</span> </button> <button class="btn-premium btn-outline add-to-list" aria-label="Add to reading list"> <i class="fas fa-bookmark"></i> </button>
+         </div>
+        </div>
+       </div><!-- Novel Card 2: Ketika Cinta Bertasbih -->
+       <div class="novel-card" data-video="https://www.youtube.com/watch?v=YqnS3LKsafY">
+        <div class="novel-card-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"><i class="novel-icon fas fa-book-heart"></i>
+         <div class="novel-rating"><i class="fas fa-star"></i> <span>4.7</span>
+         </div>
+         <div class="novel-badge">
+          Film
+         </div>
+        </div>
+        <div class="p-6 flex-1 flex flex-col">
+         <h3 class="text-2xl font-bold mb-2" style="font-family: 'Cormorant Garamond', serif;">Ketika Cinta Bertasbih</h3>
+         <p class="text-sm mb-3" style="color: var(--secondary-text);">Habiburrahman El Shirazy</p>
+         <p class="text-sm mb-4 flex-1" style="color: var(--secondary-text);">Perjalanan cinta seorang pemuda yang berjuang menggapai cita-cita sambil menjaga nilai-nilai keislaman dengan teguh.</p>
+         <div class="flex gap-2 mb-4 flex-wrap"><span class="tag">Inspiratif</span> <span class="tag">Keluarga</span> <span class="tag">Perjuangan</span>
+         </div>
+         <div class="flex gap-3"><button class="btn-premium btn-gold flex-1 watch-trailer"> <i class="fas fa-play"></i> <span>Trailer</span> </button> <button class="btn-premium btn-outline add-to-list" aria-label="Add to reading list"> <i class="fas fa-bookmark"></i> </button>
+         </div>
+        </div>
+       </div><!-- Novel Card 3: 99 Cahaya di Langit Eropa -->
+       <div class="novel-card" data-video="https://www.youtube.com/watch?v=Ql0nT8L6VJo">
+        <div class="novel-card-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"><i class="novel-icon fas fa-mosque"></i>
+         <div class="novel-rating"><i class="fas fa-star"></i> <span>4.9</span>
+         </div>
+         <div class="novel-badge">
+          Film
+         </div>
+        </div>
+        <div class="p-6 flex-1 flex flex-col">
+         <h3 class="text-2xl font-bold mb-2" style="font-family: 'Cormorant Garamond', serif;">99 Cahaya di Langit Eropa</h3>
+         <p class="text-sm mb-3" style="color: var(--secondary-text);">Hanum Salsabiela Rais</p>
+         <p class="text-sm mb-4 flex-1" style="color: var(--secondary-text);">Perjalanan spiritual sepasang suami istri yang menemukan keindahan Islam di tengah kehidupan modern Eropa.</p>
+         <div class="flex gap-2 mb-4 flex-wrap"><span class="tag">Spiritual</span> <span class="tag">Perjalanan</span> <span class="tag">Keluarga</span>
+         </div>
+         <div class="flex gap-3"><button class="btn-premium btn-gold flex-1 watch-trailer"> <i class="fas fa-play"></i> <span>Trailer</span> </button> <button class="btn-premium btn-outline add-to-list" aria-label="Add to reading list"> <i class="fas fa-bookmark"></i> </button>
+         </div>
+        </div>
+       </div><!-- Novel Card 4: Surga Yang Tak Dirindukan -->
+       <div class="novel-card" data-video="https://www.youtube.com/watch?v=5VbXl7gOYbE">
+        <div class="novel-card-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"><i class="novel-icon fas fa-praying-hands"></i>
+         <div class="novel-rating"><i class="fas fa-star"></i> <span>4.6</span>
+         </div>
+         <div class="novel-badge">
+          Film
+         </div>
+        </div>
+        <div class="p-6 flex-1 flex flex-col">
+         <h3 class="text-2xl font-bold mb-2" style="font-family: 'Cormorant Garamond', serif;">Surga Yang Tak Dirindukan</h3>
+         <p class="text-sm mb-3" style="color: var(--secondary-text);">Asma Nadia</p>
+         <p class="text-sm mb-4 flex-1" style="color: var(--secondary-text);">Kisah rumit tentang poligami, pengkhianatan, dan pemaafan dalam bingkai nilai-nilai Islam yang mendalam.</p>
+         <div class="flex gap-2 mb-4 flex-wrap"><span class="tag">Drama</span> <span class="tag">Keluarga</span> <span class="tag">Emosional</span>
+         </div>
+         <div class="flex gap-3"><button class="btn-premium btn-gold flex-1 watch-trailer"> <i class="fas fa-play"></i> <span>Trailer</span> </button> <button class="btn-premium btn-outline add-to-list" aria-label="Add to reading list"> <i class="fas fa-bookmark"></i> </button>
+         </div>
+        </div>
+       </div><!-- Novel Card 5: Perempuan Berkalung Sorban -->
+       <div class="novel-card" data-video="https://www.youtube.com/watch?v=Zn8fJpVKKHY">
+        <div class="novel-card-image" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);"><i class="novel-icon fas fa-quran"></i>
+         <div class="novel-rating"><i class="fas fa-star"></i> <span>4.8</span>
+         </div>
+         <div class="novel-badge">
+          Film
+         </div>
+        </div>
+        <div class="p-6 flex-1 flex flex-col">
+         <h3 class="text-2xl font-bold mb-2" style="font-family: 'Cormorant Garamond', serif;">Perempuan Berkalung Sorban</h3>
+         <p class="text-sm mb-3" style="color: var(--secondary-text);">Abidah El Khalieqy</p>
+         <p class="text-sm mb-4 flex-1" style="color: var(--secondary-text);">Perjuangan seorang perempuan melawan tradisi patriarki sambil mempertahankan nilai Islam yang sejati dan adil.</p>
+         <div class="flex gap-2 mb-4 flex-wrap"><span class="tag">Feminisme</span> <span class="tag">Perjuangan</span> <span class="tag">Inspiratif</span>
+         </div>
+         <div class="flex gap-3"><button class="btn-premium btn-gold flex-1 watch-trailer"> <i class="fas fa-play"></i> <span>Trailer</span> </button> <button class="btn-premium btn-outline add-to-list" aria-label="Add to reading list"> <i class="fas fa-bookmark"></i> </button>
+         </div>
+        </div>
+       </div><!-- Novel Card 6: Bidadari-Bidadari Surga -->
+       <div class="novel-card" data-video="https://www.youtube.com/watch?v=8kVFDmJQGz8">
+        <div class="novel-card-image" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);"><i class="novel-icon fas fa-hands-praying"></i>
+         <div class="novel-rating"><i class="fas fa-star"></i> <span>4.7</span>
+         </div>
+         <div class="novel-badge">
+          Series
+         </div>
+        </div>
+        <div class="p-6 flex-1 flex flex-col">
+         <h3 class="text-2xl font-bold mb-2" style="font-family: 'Cormorant Garamond', serif;">Bidadari-Bidadari Surga</h3>
+         <p class="text-sm mb-3" style="color: var(--secondary-text);">Tere Liye</p>
+         <p class="text-sm mb-4 flex-1" style="color: var(--secondary-text);">Kisah mengharukan tentang pengorbanan seorang kakak untuk adik-adiknya dengan penuh keikhlasan dan kasih sayang.</p>
+         <div class="flex gap-2 mb-4 flex-wrap"><span class="tag">Keluarga</span> <span class="tag">Pengorbanan</span> <span class="tag">Emosional</span>
+         </div>
+         <div class="flex gap-3"><button class="btn-premium btn-gold flex-1 watch-trailer"> <i class="fas fa-play"></i> <span>Trailer</span> </button> <button class="btn-premium btn-outline add-to-list" aria-label="Add to reading list"> <i class="fas fa-bookmark"></i> </button>
+         </div>
+        </div>
+       </div>
+      </div>
+     </section><!-- Islamic Values Section -->
+     <section id="values" class="mb-24 fade-in-up">
+      <div class="text-center mb-16">
+       <h2 class="text-4xl md:text-5xl font-bold mb-4" style="font-family: 'Cormorant Garamond', serif;">Nilai-Nilai Islami</h2>
+       <p class="text-lg max-w-2xl mx-auto" style="color: var(--secondary-text);">Pesan moral dan hikmah yang terkandung dalam setiap kisah</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+       <div class="value-card">
+        <div class="text-5xl mb-6">
+         💝
+        </div>
+        <h3 class="text-2xl font-bold mb-4" style="font-family: 'Cormorant Garamond', serif;">Cinta dalam Islam</h3>
+        <p style="color: var(--secondary-text); line-height: 1.8;">Cinta yang dilandasi ketakwaan, saling menghormati, dan membawa kedua insan menuju ridha Allah SWT. Setiap kisah mengajarkan bagaimana membangun hubungan yang diberkahi.</p>
+       </div>
+       <div class="value-card">
+        <div class="text-5xl mb-6">
+         🤲
+        </div>
+        <h3 class="text-2xl font-bold mb-4" style="font-family: 'Cormorant Garamond', serif;">Kesabaran &amp; Tawakal</h3>
+        <p style="color: var(--secondary-text); line-height: 1.8;">Menghadapi ujian hidup dengan sabar dan berserah diri kepada takdir Allah yang Maha Bijaksana. Setiap cobaan adalah jalan menuju kedewasaan spiritual.</p>
+       </div>
+       <div class="value-card">
+        <div class="text-5xl mb-6">
+         🕌
+        </div>
+        <h3 class="text-2xl font-bold mb-4" style="font-family: 'Cormorant Garamond', serif;">Akhlak Mulia</h3>
+        <p style="color: var(--secondary-text); line-height: 1.8;">Menjunjung tinggi akhlak terpuji dalam setiap interaksi, baik dengan sesama manusia maupun dengan Allah. Karakter yang baik adalah cerminan iman yang kuat.</p>
+       </div>
+       <div class="value-card">
+        <div class="text-5xl mb-6">
+         👨‍👩‍👧‍👦
+        </div>
+        <h3 class="text-2xl font-bold mb-4" style="font-family: 'Cormorant Garamond', serif;">Keluarga Sakinah</h3>
+        <p style="color: var(--secondary-text); line-height: 1.8;">Membangun keluarga yang penuh mawaddah, warahmah, dan menjadi ladang amal untuk kehidupan akhirat. Fondasi keluarga yang kokoh dimulai dari cinta yang tulus.</p>
+       </div>
+      </div>
+     </section><!-- Authors Section -->
+     <section id="authors" class="mb-24 fade-in-up">
+      <div class="text-center mb-16">
+       <h2 class="text-4xl md:text-5xl font-bold mb-4" style="font-family: 'Cormorant Garamond', serif;">Inspirasi Penulis</h2>
+       <p class="text-lg max-w-2xl mx-auto" style="color: var(--secondary-text);">Mengenal lebih dekat para penulis di balik karya-karya inspiratif</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+       <div class="author-card">
+        <div class="author-avatar">
+         HE
+        </div>
+        <h3 class="text-xl font-bold mb-2" style="font-family: 'Cormorant Garamond', serif;">Habiburrahman El Shirazy</h3>
+        <p class="text-sm mb-3" style="color: var(--accent-gold);">Penulis &amp; Dai</p>
+        <p class="text-sm" style="color: var(--secondary-text); line-height: 1.6;">Lulusan Al-Azhar yang mengangkat tema Islam dalam karya-karyanya dengan indah dan mendalam, menginspirasi jutaan pembaca.</p>
+       </div>
+       <div class="author-card">
+        <div class="author-avatar">
+         AN
+        </div>
+        <h3 class="text-xl font-bold mb-2" style="font-family: 'Cormorant Garamond', serif;">Asma Nadia</h3>
+        <p class="text-sm mb-3" style="color: var(--accent-gold);">Novelis &amp; Aktivis</p>
+        <p class="text-sm" style="color: var(--secondary-text); line-height: 1.6;">Pendiri Forum Lingkar Pena yang produktif menulis novel Islami dengan tema keluarga dan perempuan yang kuat.</p>
+       </div>
+       <div class="author-card">
+        <div class="author-avatar">
+         TL
+        </div>
+        <h3 class="text-xl font-bold mb-2" style="font-family: 'Cormorant Garamond', serif;">Tere Liye</h3>
+        <p class="text-sm mb-3" style="color: var(--accent-gold);">Penulis Bestseller</p>
+        <p class="text-sm" style="color: var(--secondary-text); line-height: 1.6;">Penulis produktif dengan puluhan novel yang sarat makna dan nilai-nilai kemanusiaan yang universal dan menyentuh hati.</p>
+       </div>
+      </div>
+     </section>
+    </div><!-- Sidebar -->
+    <aside class="lg:w-80 sidebar"><!-- Trending -->
+     <div class="sidebar-card">
+      <h3 class="text-xl font-bold mb-6 flex items-center gap-2" style="font-family: 'Cormorant Garamond', serif;"><i class="fas fa-fire" style="color: var(--accent-gold);"></i> Trending Now</h3>
+      <div class="space-y-4">
+       <div class="flex gap-3 items-start">
+        <div class="w-12 h-12 rounded-lg flex items-center justify-center text-white font-bold text-lg" style="background: linear-gradient(135deg, var(--accent-emerald), var(--accent-gold));">
+         1
+        </div>
+        <div class="flex-1">
+         <h4 class="font-semibold text-sm mb-1">Ayat-Ayat Cinta</h4>
+         <p class="text-xs" style="color: var(--secondary-text);">10.5K views</p>
+        </div>
+       </div>
+       <div class="flex gap-3 items-start">
+        <div class="w-12 h-12 rounded-lg flex items-center justify-center text-white font-bold text-lg" style="background: linear-gradient(135deg, var(--accent-emerald), var(--accent-gold));">
+         2
+        </div>
+        <div class="flex-1">
+         <h4 class="font-semibold text-sm mb-1">99 Cahaya di Langit Eropa</h4>
+         <p class="text-xs" style="color: var(--secondary-text);">8.2K views</p>
+        </div>
+       </div>
+       <div class="flex gap-3 items-start">
+        <div class="w-12 h-12 rounded-lg flex items-center justify-center text-white font-bold text-lg" style="background: linear-gradient(135deg, var(--accent-emerald), var(--accent-gold));">
+         3
+        </div>
+        <div class="flex-1">
+         <h4 class="font-semibold text-sm mb-1">Ketika Cinta Bertasbih</h4>
+         <p class="text-xs" style="color: var(--secondary-text);">7.8K views</p>
+        </div>
+       </div>
+      </div>
+     </div><!-- Newsletter -->
+     <div class="sidebar-card" style="background: linear-gradient(135deg, var(--accent-emerald), var(--accent-gold)); color: white;">
+      <h3 class="text-xl font-bold mb-3" style="font-family: 'Cormorant Garamond', serif;">📚 Newsletter</h3>
+      <p class="text-sm mb-4 opacity-90">Dapatkan rekomendasi novel Islami terbaru langsung ke email Anda!</p><input type="email" placeholder="Email Anda" class="w-full px-4 py-3 rounded-lg mb-3 text-gray-800 focus:outline-none"> <button class="w-full py-3 rounded-lg font-semibold transition" style="background: white; color: var(--accent-emerald);"> Berlangganan </button>
+     </div><!-- Reading List -->
+     <div class="sidebar-card">
+      <h3 class="text-xl font-bold mb-6 flex items-center gap-2" style="font-family: 'Cormorant Garamond', serif;"><i class="fas fa-bookmark" style="color: var(--accent-gold);"></i> Daftar Bacaan</h3>
+      <div id="readingList">
+       <p class="text-sm text-center py-8" style="color: var(--secondary-text);">Belum ada novel yang ditambahkan</p>
+      </div>
+     </div><!-- Share -->
+     <div class="sidebar-card">
+      <h3 class="text-xl font-bold mb-6 flex items-center gap-2" style="font-family: 'Cormorant Garamond', serif;"><i class="fas fa-share-alt" style="color: var(--accent-gold);"></i> Bagikan</h3>
+      <div class="grid grid-cols-4 gap-3"><button class="aspect-square rounded-lg flex items-center justify-center text-white transition hover:opacity-80" style="background: #1877F2;"> <i class="fab fa-facebook-f"></i> </button> <button class="aspect-square rounded-lg flex items-center justify-center text-white transition hover:opacity-80" style="background: #1DA1F2;"> <i class="fab fa-twitter"></i> </button> <button class="aspect-square rounded-lg flex items-center justify-center text-white transition hover:opacity-80" style="background: #25D366;"> <i class="fab fa-whatsapp"></i> </button> <button class="aspect-square rounded-lg flex items-center justify-center text-white transition hover:opacity-80" style="background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF);"> <i class="fab fa-instagram"></i> </button>
+      </div>
+     </div>
+    </aside>
+   </div>
+  </main><!-- Footer -->
+  <footer class="py-16" style="background: var(--secondary-bg); border-top: 1px solid var(--border-color);">
+   <div class="max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+     <div>
+      <div class="flex items-center gap-3 mb-4">
+       <div class="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-600 to-amber-500 flex items-center justify-center"><i class="fas fa-book-open text-white text-lg"></i>
+       </div>
+       <h3 class="text-xl font-bold" style="font-family: 'Cormorant Garamond', serif;">Islamic Romance</h3>
+      </div>
+      <p id="footer-description" class="text-sm" style="color: var(--secondary-text); line-height: 1.6;">Platform terpercaya untuk novel Islami berkualitas yang menginspirasi dan mencerahkan.</p>
+     </div>
+     <div>
+      <h4 class="font-bold mb-4">Navigasi</h4>
+      <ul class="space-y-2 text-sm" style="color: var(--secondary-text);">
+       <li><a href="#home" class="hover:opacity-70 transition">Beranda</a></li>
+       <li><a href="#novels" class="hover:opacity-70 transition">Novel</a></li>
+       <li><a href="#values" class="hover:opacity-70 transition">Nilai Islami</a></li>
+       <li><a href="#authors" class="hover:opacity-70 transition">Penulis</a></li>
+      </ul>
+     </div>
+     <div>
+      <h4 class="font-bold mb-4">Kategori</h4>
+      <ul class="space-y-2 text-sm" style="color: var(--secondary-text);">
+       <li><a href="#" class="hover:opacity-70 transition">Romansa</a></li>
+       <li><a href="#" class="hover:opacity-70 transition">Spiritual</a></li>
+       <li><a href="#" class="hover:opacity-70 transition">Drama</a></li>
+       <li><a href="#" class="hover:opacity-70 transition">Keluarga</a></li>
+      </ul>
+     </div>
+     <div>
+      <h4 class="font-bold mb-4">Ikuti Kami</h4>
+      <div class="flex gap-3"><a href="#" class="w-10 h-10 rounded-full flex items-center justify-center transition hover:opacity-70" style="background: var(--border-color);"> <i class="fab fa-facebook-f"></i> </a> <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center transition hover:opacity-70" style="background: var(--border-color);"> <i class="fab fa-instagram"></i> </a> <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center transition hover:opacity-70" style="background: var(--border-color);"> <i class="fab fa-youtube"></i> </a> <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center transition hover:opacity-70" style="background: var(--border-color);"> <i class="fab fa-twitter"></i> </a>
+      </div>
+     </div>
+    </div>
+    <div class="pt-8 text-center" style="border-top: 1px solid var(--border-color);">
+     <p id="footer-text" class="text-sm" style="color: var(--secondary-text);">© 2024 Islamic Romance Library. Semua hak dilindungi. Dibuat dengan ❤️ untuk pecinta literatur Islami.</p>
+    </div>
+   </div>
+  </footer><!-- Video Modal -->
+  <div id="videoModal" class="video-modal">
+   <div class="video-container"><button class="close-video" id="closeVideo" aria-label="Close video"> <i class="fas fa-times"></i> </button> <iframe id="videoIframe" src="" allowfullscreen></iframe>
+   </div>
+  </div><!-- Chatbot -->
+  <div class="chatbot-container">
+   <div id="chatbotWindow" class="chatbot-window">
+    <div class="p-4 flex justify-between items-center" style="background: linear-gradient(135deg, var(--accent-emerald), var(--accent-gold)); color: white;">
+     <h3 class="font-bold" style="font-family: 'Cormorant Garamond', serif;">Asisten Virtual</h3><button id="closeChatbot" class="text-xl" aria-label="Close chat"> <i class="fas fa-times"></i> </button>
+    </div>
+    <div class="flex-1 p-4 overflow-y-auto" id="chatMessages" style="background: var(--primary-bg);">
+     <div class="p-3 rounded-lg mb-3" style="background: var(--secondary-bg); border: 1px solid var(--border-color);">
+      <p class="text-sm">Assalamu'alaikum! 👋 Ada yang bisa saya bantu tentang novel Islami?</p>
+     </div>
+    </div>
+    <div class="p-4" style="background: var(--secondary-bg); border-top: 1px solid var(--border-color);">
+     <div class="flex gap-2"><input type="text" id="chatInput" placeholder="Ketik pesan..." class="flex-1 px-4 py-2 rounded-lg border focus:outline-none" style="border-color: var(--border-color); background: var(--primary-bg); color: var(--primary-text);"> <button id="sendChat" class="px-4 py-2 rounded-lg text-white transition" style="background: var(--accent-gold); color: #1A1A1A;"> <i class="fas fa-paper-plane"></i> </button>
+     </div>
+    </div>
+   </div>
+   <div id="chatbotButton" class="chatbot-button"><i class="fas fa-comments text-white text-2xl"></i>
+   </div>
+  </div>
+  <script>
+        // Configuration
+        const defaultConfig = {
+            site_title: "Islamic Romance Library",
+            tagline: "Discover Love Through Faith",
+            hero_title: "Kisah Cinta yang\nMenginspirasi",
+            hero_description: "Jelajahi koleksi novel romansa Islami terbaik yang telah diadaptasi menjadi film dan series berkualitas tinggi",
+            footer_text: "© 2024 Islamic Romance Library. Semua hak dilindungi. Dibuat dengan ❤️ untuk pecinta literatur Islami.",
+            footer_description: "Platform terpercaya untuk novel Islami berkualitas yang menginspirasi dan mencerahkan."
+        };
+
+        let config = { ...defaultConfig };
+
+        // Element SDK Integration
+        async function onConfigChange(newConfig) {
+            config = { ...config, ...newConfig };
+            
+            const siteTitle = document.getElementById('site-title');
+            const tagline = document.getElementById('tagline');
+            const heroTitle = document.getElementById('hero-title');
+            const heroDescription = document.getElementById('hero-description');
+            const footerText = document.getElementById('footer-text');
+            const footerDescription = document.getElementById('footer-description');
+            
+            if (siteTitle) siteTitle.textContent = config.site_title || defaultConfig.site_title;
+            if (tagline) tagline.textContent = config.tagline || defaultConfig.tagline;
+            if (heroTitle) heroTitle.textContent = config.hero_title || defaultConfig.hero_title;
+            if (heroDescription) heroDescription.textContent = config.hero_description || defaultConfig.hero_description;
+            if (footerText) footerText.textContent = config.footer_text || defaultConfig.footer_text;
+            if (footerDescription) footerDescription.textContent = config.footer_description || defaultConfig.footer_description;
+        }
+
+        if (window.elementSdk) {
+            window.elementSdk.init({
+                defaultConfig,
+                onConfigChange,
+                mapToCapabilities: (config) => ({
+                    recolorables: [],
+                    borderables: [],
+                    fontEditable: undefined,
+                    fontSizeable: undefined
+                }),
+                mapToEditPanelValues: (config) => new Map([
+                    ["site_title", config.site_title || defaultConfig.site_title],
+                    ["tagline", config.tagline || defaultConfig.tagline],
+                    ["hero_title", config.hero_title || defaultConfig.hero_title],
+                    ["hero_description", config.hero_description || defaultConfig.hero_description],
+                    ["footer_text", config.footer_text || defaultConfig.footer_text],
+                    ["footer_description", config.footer_description || defaultConfig.footer_description]
+                ])
+            });
+        }
+
+        // Theme Toggle
+        let isDarkMode = false;
+        const themeToggle = document.getElementById('themeToggle');
+        const themeToggleMobile = document.getElementById('themeToggleMobile');
+        const body = document.body;
+
+        function toggleTheme() {
+            isDarkMode = !isDarkMode;
+            body.classList.toggle('dark-mode');
+            themeToggle.classList.toggle('active');
+            themeToggleMobile.classList.toggle('active');
+            localStorage.setItem('darkMode', isDarkMode);
+        }
+
+        themeToggle.addEventListener('click', toggleTheme);
+        themeToggleMobile.addEventListener('click', toggleTheme);
+
+        // Load saved theme
+        if (localStorage.getItem('darkMode') === 'true') {
+            toggleTheme();
+        }
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Scroll Progress
+        window.addEventListener('scroll', () => {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / scrollHeight) * 100;
+            scrollProgress.style.width = scrolled + '%';
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Counter Animation
+        const counters = document.querySelectorAll('.counter-number');
+        let hasAnimated = false;
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !hasAnimated) {
+                    hasAnimated = true;
+                    counters.forEach(counter => {
+                        const target = parseInt(counter.getAttribute('data-target'));
+                        let current = 0;
+                        const increment = target / 50;
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                counter.textContent = target;
+                                clearInterval(timer);
+                            } else {
+                                counter.textContent = Math.floor(current);
+                            }
+                        }, 30);
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => counterObserver.observe(counter));
+
+        // Fade In Animation
+        const fadeElements = document.querySelectorAll('.fade-in-up');
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeElements.forEach(element => fadeObserver.observe(element));
+
+        // Video Modal
+        const videoModal = document.getElementById('videoModal');
+        const videoIframe = document.getElementById('videoIframe');
+        const closeVideo = document.getElementById('closeVideo');
+        const trailerButtons = document.querySelectorAll('.watch-trailer');
+
+        trailerButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const card = button.closest('.novel-card');
+                const videoUrl = card.getAttribute('data-video');
+                window.open(videoUrl, '_blank', 'noopener,noreferrer');
+            });
+        });
+
+        closeVideo.addEventListener('click', () => {
+            videoModal.classList.remove('active');
+            videoIframe.src = '';
+        });
+
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal) {
+                videoModal.classList.remove('active');
+                videoIframe.src = '';
+            }
+        });
+
+        // Reading List
+        let readingList = JSON.parse(localStorage.getItem('readingList') || '[]');
+
+        function updateReadingList() {
+            const container = document.getElementById('readingList');
+            if (readingList.length === 0) {
+                container.innerHTML = '<p class="text-sm text-center py-8" style="color: var(--secondary-text);">Belum ada novel yang ditambahkan</p>';
+            } else {
+                container.innerHTML = readingList.map((novel, index) => `
+                    <div class="flex items-center justify-between p-3 rounded-lg mb-2" style="background: var(--primary-bg); border: 1px solid var(--border-color);">
+                        <span class="text-sm font-semibold">${novel}</span>
+                        <button onclick="removeFromList(${index})" class="text-red-500 hover:text-red-700" aria-label="Remove from list">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+        }
+
+        window.removeFromList = function(index) {
+            readingList.splice(index, 1);
+            localStorage.setItem('readingList', JSON.stringify(readingList));
+            updateReadingList();
+        };
+
+        const addToListButtons = document.querySelectorAll('.add-to-list');
+        addToListButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const card = button.closest('.novel-card');
+                const title = card.querySelector('h3').textContent;
+                
+                if (!readingList.includes(title)) {
+                    readingList.push(title);
+                    localStorage.setItem('readingList', JSON.stringify(readingList));
+                    updateReadingList();
+                    button.innerHTML = '<i class="fas fa-check"></i>';
+                    setTimeout(() => {
+                        button.innerHTML = '<i class="fas fa-bookmark"></i>';
+                    }, 2000);
+                }
+            });
+        });
+
+        updateReadingList();
+
+        // Search Functionality
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+
+        function performSearch() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            if (!searchTerm) return;
+
+            const novelCards = document.querySelectorAll('.novel-card');
+            let found = false;
+
+            novelCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const author = card.querySelector('p').textContent.toLowerCase();
+                const description = card.querySelectorAll('p')[1].textContent.toLowerCase();
+
+                if (title.includes(searchTerm) || author.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                    found = true;
+                    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            if (!found) {
+                addChatMessage(`Maaf, tidak ditemukan hasil untuk "${searchTerm}". Coba kata kunci lain! 🔍`, false);
+                openChatbot();
+            }
+        }
+
+        searchBtn.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        // Chatbot
+        const chatbotButton = document.getElementById('chatbotButton');
+        const chatbotWindow = document.getElementById('chatbotWindow');
+        const closeChatbot = document.getElementById('closeChatbot');
+        const chatInput = document.getElementById('chatInput');
+        const sendChat = document.getElementById('sendChat');
+        const chatMessages = document.getElementById('chatMessages');
+
+        function openChatbot() {
+            chatbotWindow.classList.add('active');
+            chatbotButton.style.display = 'none';
+        }
+
+        chatbotButton.addEventListener('click', openChatbot);
+
+        closeChatbot.addEventListener('click', () => {
+            chatbotWindow.classList.remove('active');
+            chatbotButton.style.display = 'flex';
+        });
+
+        function addChatMessage(message, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `p-3 rounded-lg mb-3 ${isUser ? 'ml-8' : 'mr-8'}`;
+            messageDiv.style.background = isUser ? 'var(--accent-gold)' : 'var(--secondary-bg)';
+            messageDiv.style.color = isUser ? '#1A1A1A' : 'var(--primary-text)';
+            messageDiv.style.border = isUser ? 'none' : '1px solid var(--border-color)';
+            messageDiv.innerHTML = `<p class="text-sm">${message}</p>`;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function getBotResponse(userMessage) {
+            const lowerMessage = userMessage.toLowerCase();
+            if (lowerMessage.includes('ayat') || lowerMessage.includes('cinta')) {
+                return 'Ayat-Ayat Cinta adalah novel karya Habiburrahman El Shirazy yang menceritakan kisah cinta di Mesir. Novel ini telah diadaptasi menjadi film yang sangat populer! 🎬';
+            } else if (lowerMessage.includes('rekomendasi') || lowerMessage.includes('saran')) {
+                return 'Saya merekomendasikan "99 Cahaya di Langit Eropa" untuk Anda! Novel ini menceritakan perjalanan spiritual yang menginspirasi. ✨';
+            } else if (lowerMessage.includes('penulis') || lowerMessage.includes('author')) {
+                return 'Beberapa penulis terkenal novel Islami: Habiburrahman El Shirazy, Asma Nadia, dan Tere Liye. Mereka semua memiliki karya-karya yang luar biasa! 📚';
+            } else {
+                return 'Terima kasih atas pertanyaannya! Silakan jelajahi koleksi novel kami atau tanyakan tentang novel tertentu. 😊';
+            }
+        }
+
+        sendChat.addEventListener('click', () => {
+            const message = chatInput.value.trim();
+            if (message) {
+                addChatMessage(message, true);
+                chatInput.value = '';
+                
+                setTimeout(() => {
+                    const response = getBotResponse(message);
+                    addChatMessage(response, false);
+                }, 1000);
+            }
+        });
+
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendChat.click();
+            }
+        });
+
+        // Language Switcher
+        const languageSwitcher = document.getElementById('languageSwitcher');
+        const languageSwitcherMobile = document.getElementById('languageSwitcherMobile');
+
+        function changeLanguage(lang) {
+            if (lang === 'en') {
+                addChatMessage('Language changed to English! 🇬🇧', false);
+            } else if (lang === 'ar') {
+                addChatMessage('تم تغيير اللغة إلى العربية! 🇸🇦', false);
+            } else {
+                addChatMessage('Bahasa diubah ke Indonesia! 🇮🇩', false);
+            }
+            openChatbot();
+        }
+
+        languageSwitcher.addEventListener('change', (e) => changeLanguage(e.target.value));
+        languageSwitcherMobile.addEventListener('change', (e) => changeLanguage(e.target.value));
+
+
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99bde75b3378ce6a',t:'MTc2MjY5NzUzMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
